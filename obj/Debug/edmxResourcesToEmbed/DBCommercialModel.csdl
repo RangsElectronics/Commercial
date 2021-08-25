@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbCommercialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblBank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblMasters" Relationship="Self.FK_tbMaster_tbBank" FromRole="tblBank" ToRole="tblMaster" />
+  </EntityType>
+  <EntityType Name="tblDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="HSCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="KG" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="tblMaster" Relationship="Self.FK_tbDetails_tbMaster" FromRole="tblDetails" ToRole="tblMaster" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tbDetails_tbProduct" FromRole="tblDetails" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblMainMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MainMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSubMenus" Relationship="Self.FK_tblSubMenu_tblRoles" FromRole="tblMainMenu" ToRole="tblSubMenu" />
+  </EntityType>
+  <EntityType Name="tblMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="LCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LCDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IRCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PINo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PIValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LCAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TTAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FOBPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FreightCharge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ContainerQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomsDuty" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="tblBank" Relationship="Self.FK_tbMaster_tbBank" FromRole="tblMaster" ToRole="tblBank" />
+    <NavigationProperty Name="tblDetails" Relationship="Self.FK_tbDetails_tbMaster" FromRole="tblMaster" ToRole="tblDetails" />
+    <NavigationProperty Name="tblSupplier" Relationship="Self.FK_tbMaster_tbSupplier" FromRole="tblMaster" ToRole="tblSupplier" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblDetails" Relationship="Self.FK_tbDetails_tbProduct" FromRole="tblProduct" ToRole="tblDetails" />
+  </EntityType>
+  <EntityType Name="tblSubMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Controller" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MainMenuId" Type="Int32" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="tblMainMenu" Relationship="Self.FK_tblSubMenu_tblRoles" FromRole="tblSubMenu" ToRole="tblMainMenu" />
+  </EntityType>
+  <EntityType Name="tblSupplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblMasters" Relationship="Self.FK_tbMaster_tbSupplier" FromRole="tblSupplier" ToRole="tblMaster" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RolesId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Passward" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_tbMaster_tbBank">
+    <End Role="tblBank" Type="Self.tblBank" Multiplicity="1" />
+    <End Role="tblMaster" Type="Self.tblMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBank">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblMaster">
+        <PropertyRef Name="BankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDetails_tbMaster">
+    <End Role="tblMaster" Type="Self.tblMaster" Multiplicity="1" />
+    <End Role="tblDetails" Type="Self.tblDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDetails">
+        <PropertyRef Name="MasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDetails_tbProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="1" />
+    <End Role="tblDetails" Type="Self.tblDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDetails">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubMenu_tblRoles">
+    <End Role="tblMainMenu" Type="Self.tblMainMenu" Multiplicity="0..1" />
+    <End Role="tblSubMenu" Type="Self.tblSubMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMainMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblSubMenu">
+        <PropertyRef Name="MainMenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbMaster_tbSupplier">
+    <End Role="tblSupplier" Type="Self.tblSupplier" Multiplicity="1" />
+    <End Role="tblMaster" Type="Self.tblMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSupplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblMaster">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbCommercialEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblBanks" EntityType="Self.tblBank" />
+    <EntitySet Name="tblDetails" EntityType="Self.tblDetail" />
+    <EntitySet Name="tblMainMenus" EntityType="Self.tblMainMenu" />
+    <EntitySet Name="tblMasters" EntityType="Self.tblMaster" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+    <EntitySet Name="tblSubMenus" EntityType="Self.tblSubMenu" />
+    <EntitySet Name="tblSuppliers" EntityType="Self.tblSupplier" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK_tbMaster_tbBank" Association="Self.FK_tbMaster_tbBank">
+      <End Role="tblBank" EntitySet="tblBanks" />
+      <End Role="tblMaster" EntitySet="tblMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDetails_tbMaster" Association="Self.FK_tbDetails_tbMaster">
+      <End Role="tblMaster" EntitySet="tblMasters" />
+      <End Role="tblDetails" EntitySet="tblDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDetails_tbProduct" Association="Self.FK_tbDetails_tbProduct">
+      <End Role="tblProduct" EntitySet="tblProducts" />
+      <End Role="tblDetails" EntitySet="tblDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubMenu_tblRoles" Association="Self.FK_tblSubMenu_tblRoles">
+      <End Role="tblMainMenu" EntitySet="tblMainMenus" />
+      <End Role="tblSubMenu" EntitySet="tblSubMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbMaster_tbSupplier" Association="Self.FK_tbMaster_tbSupplier">
+      <End Role="tblSupplier" EntitySet="tblSuppliers" />
+      <End Role="tblMaster" EntitySet="tblMasters" />
+    </AssociationSet>
+    <EntitySet Name="vw_MasterDetail" EntityType="dbCommercialModel.vw_MasterDetail" />
+  </EntityContainer>
+  <EntityType Name="vw_MasterDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="BankId" />
+      <PropertyRef Name="SupplierId" />
+      <PropertyRef Name="LCNo" />
+      <PropertyRef Name="LCDate" />
+      <PropertyRef Name="DetailId" />
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="BankName" />
+      <PropertyRef Name="SupplierName" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="BankId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="LCNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LCDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IRCNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PINo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PIValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LCAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TTAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FOBPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FreightCharge" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ContainerQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomsDuty" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DetailId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="HSCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="KG" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BankName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

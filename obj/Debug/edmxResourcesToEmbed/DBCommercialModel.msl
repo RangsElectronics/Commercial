@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbCommercialModelStoreContainer" CdmEntityContainer="dbCommercialEntities">
+    <EntitySetMapping Name="tblBanks">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblBank">
+        <MappingFragment StoreEntitySet="tblBank">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDetails">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblDetail">
+        <MappingFragment StoreEntitySet="tblDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="HSCode" ColumnName="HSCode" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="KG" ColumnName="KG" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMainMenus">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblMainMenu">
+        <MappingFragment StoreEntitySet="tblMainMenu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MainMenu" ColumnName="MainMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMasters">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblMaster">
+        <MappingFragment StoreEntitySet="tblMaster">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="LCNo" ColumnName="LCNo" />
+          <ScalarProperty Name="LCDate" ColumnName="LCDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IRCNo" ColumnName="IRCNo" />
+          <ScalarProperty Name="PINo" ColumnName="PINo" />
+          <ScalarProperty Name="PIValue" ColumnName="PIValue" />
+          <ScalarProperty Name="LCAmount" ColumnName="LCAmount" />
+          <ScalarProperty Name="TTAmount" ColumnName="TTAmount" />
+          <ScalarProperty Name="FOBPrice" ColumnName="FOBPrice" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="FreightCharge" ColumnName="FreightCharge" />
+          <ScalarProperty Name="ContainerQuantity" ColumnName="ContainerQuantity" />
+          <ScalarProperty Name="CustomsDuty" ColumnName="CustomsDuty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblProduct">
+        <MappingFragment StoreEntitySet="tblProduct">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubMenus">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblSubMenu">
+        <MappingFragment StoreEntitySet="tblSubMenu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubMenu" ColumnName="SubMenu" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="MainMenuId" ColumnName="MainMenuId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSuppliers">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblSupplier">
+        <MappingFragment StoreEntitySet="tblSupplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="dbCommercialModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RolesId" ColumnName="RolesId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Passward" ColumnName="Passward" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_MasterDetail">
+      <EntityTypeMapping TypeName="dbCommercialModel.vw_MasterDetail">
+        <MappingFragment StoreEntitySet="vw_MasterDetail">
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="KG" ColumnName="KG" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="HSCode" ColumnName="HSCode" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="DetailId" ColumnName="DetailId" />
+          <ScalarProperty Name="CustomsDuty" ColumnName="CustomsDuty" />
+          <ScalarProperty Name="ContainerQuantity" ColumnName="ContainerQuantity" />
+          <ScalarProperty Name="FreightCharge" ColumnName="FreightCharge" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="FOBPrice" ColumnName="FOBPrice" />
+          <ScalarProperty Name="TTAmount" ColumnName="TTAmount" />
+          <ScalarProperty Name="LCAmount" ColumnName="LCAmount" />
+          <ScalarProperty Name="PIValue" ColumnName="PIValue" />
+          <ScalarProperty Name="PINo" ColumnName="PINo" />
+          <ScalarProperty Name="IRCNo" ColumnName="IRCNo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LCDate" ColumnName="LCDate" />
+          <ScalarProperty Name="LCNo" ColumnName="LCNo" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

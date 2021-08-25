@@ -1,0 +1,522 @@
+﻿@model Commercial.Models.MasterViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #formLabel {
+        background-color: #152f4f;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+    .table {
+        margin:auto;
+        width: 60% !important;
+        table-layout:fixed;
+    }
+</style>
+
+@using (Html.BeginForm("Create", "Master", FormMethod.Post, new { id = "frm", @encType = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4 style="padding-top:10px">Create Master</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.BankId, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.BankId, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.DropDownListFor(model => model.BankId, new SelectList(Model.BankList, "Id", "BankName"), "-- Select Bank --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BankId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.SupplierId, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.DropDownListFor(model => model.SupplierId, new SelectList(Model.SupplierList, "Id", "Name"), "-- Select Supplier --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.LCNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LCNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LCNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.LCDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LCDate, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LCDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IRCNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IRCNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IRCNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PINo, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PINo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PINo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PIValue, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PIValue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PIValue, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FreightCharge, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FreightCharge, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FreightCharge, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContainerQuantity, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContainerQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContainerQuantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomsDuty, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CustomsDuty, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CustomsDuty, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12" id="formLabel">
+            Detail Information
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DetailModel.ProductId, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.DetailModel.ProductId, new SelectList(Model.DetailModel.ProductList, "Id", "Name"), "-- Select Product --", new { @class = "form-control", @id = "searchableProduct_ddl" })
+                    @Html.ValidationMessageFor(model => model.DetailModel.ProductId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <label class="control-label">Product Description</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="productDesc" readonly />
+                </div>
+            </div>
+        </div>
+        </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DetailModel.HSCode, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DetailModel.HSCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DetailModel.HSCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DetailModel.UnitPrice, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DetailModel.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DetailModel.UnitPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DetailModel.Qty, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DetailModel.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DetailModel.Qty, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DetailModel.KG, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DetailModel.KG, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DetailModel.KG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DetailModel.Total, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DetailModel.Total, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DetailModel.Total, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input id="btnAddProduct" type="button" class="btn btn-info btn-sm" value="Add Product In List" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-12">
+            <table id="grid" class="table table-responsive table-bordered" style="width:100%;margin:0 auto">
+                <thead style="width:100%">
+                    <tr>
+                        <th>
+                            Product
+                        </th>
+                        <th>
+                            HS Code
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            KG
+                        </th>
+                        <th>
+                            Unit Price
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                        <th>
+                            Remove
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ if (Model.DetailList.Count() > 0)
+                        {
+                            { Html.RenderPartial("_Detail", Model); }
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="text-align: right; border: none" colspan="2">Total &nbsp; &nbsp;:</td>
+                        <td style="text-align: right; border:none" id="tdTotalQty"></td>
+                        <td style="text-align: right; border:none" id="tdTotalKG"></td>
+                        <td style="text-align: right; border:none" id="tdTotalUnitPrice"></td>
+                        <td style="text-align: right; border:none" id="tdTotalAmount">
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.LCAmount, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LCAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LCAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TTAmount, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TTAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TTAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FOBPrice, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FOBPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FOBPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <div class="col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" style="width:150px" />
+        </div>
+    </div>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('.datepicker').datepicker({
+            //    format: 'dd-MM-yyyy'
+            //});
+            $("#searchableProduct_ddl").chosen();
+        });
+
+        $("#searchableProduct_ddl").change(function () {
+            var prodId = $(this).val();
+            GetProductInfo(prodId);
+        });
+
+        function GetProductInfo(prodId) {
+            var url = '@Url.Action("GetProductInfo", "Master")';
+            var productId = parseInt(prodId);
+            if (productId > 0) {
+                var data = {
+                    productId: productId
+                };
+                $.ajax({
+                    url: url,
+                    data: data,
+                    type: 'POST',
+                    cache: false,
+                    success: function (obj) {
+                        if (obj.Result == true) {
+                            alert(obj.Result);
+                        }
+                        else if (obj.Result == false) {
+                            alert('System is unable to load data please try again.');
+                        }
+                        else {
+                            $('#productDesc').val(obj.Description);
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+
+        $("#btnAddProduct").click(function () {
+
+         var productID = $("#searchableProduct_ddl").val();
+           if (productID == null || productID == '' || productID == '0') {
+               $(".chosen-single").css("border", "1px solid red");
+            return false;
+           }
+            if ($('#DetailModel_Total').val() == null || $('#DetailModel_Total').val() == '' || $('#DetailModel_Total').val() == 0) {
+                $("#DetailModel_Total").addClass("border-danger");
+            return false;
+
+        }
+
+        //var productID = $('#SalesDetailModel_ProductID').val();
+            //var productModel = $('#DetailModel_ProductModel').val();
+            var hsCode = $('#DetailModel_HSCode').val();
+            var kg = $('#DetailModel_KG').val();
+            var unitPrice = $('#DetailModel_UnitPrice').val();
+            var qty = $('#DetailModel_Qty').val();
+            var totalAmnt = $('#DetailModel_Total').val();
+            if (qty == '' || qty == null) {
+                qty = 0;
+            }
+            if (kg == '' || kg == null) {
+                kg = 0;
+            }
+
+        var url = '@Url.Action("AddProductDetail", "Master")';
+        var data = {
+            ProductId: productID,
+            HSCode: hsCode,
+            UnitPrice: unitPrice,
+            KG: kg,
+            Qty: qty,
+            Total: totalAmnt
+        };
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: 'POST',
+            cache: false,
+            success: function (html) {
+                if ($(html).val() != 'Invalid') {
+
+                    $('#grid tbody').append(html);
+                    calculateTotal();
+
+                    $("#searchableProduct_ddl").val('0').trigger('chosen:updated');
+                    $('#DetailModel_HSCode').val('');
+                    $('#DetailModel_KG').val('');
+                    $('#DetailModel_Qty').val('');
+                    $('#DetailModel_Total').val('');
+                    $('#DetailModel_UnitPrice').val('');
+                    $('#productDesc').val('');
+
+                    $(".chosen-single").css("border", "1px solid #cccccc");
+                    $("#DetailModel_Total").removeClass("border-danger");
+
+                }
+                else {
+                    //
+                }
+            }
+        });
+
+        return false;
+
+        });
+
+        function calculateTotal() {
+            var sum = 0;
+            $("#grid tbody tr #Qty").each(function () {
+
+                var value = $(this).text();
+                // add only if the value is number
+                if (!isNaN(value) && value.length != 0) {
+                    sum += parseFloat(value);
+                }
+            });
+            //$("#tdTotalQty").text(sum.toFixed(2));
+            $("#tdTotalQty").text(sum);
+
+            sum = 0;
+            $("#grid tbody tr #UnitPrice").each(function () {
+
+                var value = $(this).text();
+                if (!isNaN(value) && value.length != 0) {
+                    sum += parseFloat(value);
+                }
+            });
+            $("#tdTotalUnitPrice").text(sum);
+
+            sum = 0;
+            $("#grid tbody tr #Kg").each(function () {
+
+                var value = $(this).text();
+                if (!isNaN(value) && value.length != 0) {
+                    sum += parseFloat(value);
+                }
+            });
+            $("#tdTotalKG").text(sum);
+            sum = 0;
+            $("#grid tbody tr #Total").each(function () {
+
+                var value = $(this).text();
+                if (!isNaN(value) && value.length != 0) {
+                    sum += parseFloat(value);
+                }
+            });
+            //$("#tdTotalAmount").val(sum);
+            $("#tdTotalAmount").text(sum);
+            $("#TotalAmount").val(sum);
+            //$("#TotalAmount").text(sum);
+        }
+
+        function RemoveProduct(el, id) {
+
+            if (id == 0 || id == undefined) {
+
+            }
+            $(el).parent().parent().remove();
+            calculateTotal();
+        }
+
+        $("#DetailModel_Qty").change(function () {
+            var qty = $(this).val();
+            var totalAmnt = 0.0;
+            var unitPrice = $("#DetailModel_UnitPrice").val();
+            if (unitPrice != '') {
+                totalAmnt = parseFloat(parseInt(qty) * parseFloat(unitPrice));
+            }
+            $("#DetailModel_Total").val(totalAmnt);
+        });
+        $("#DetailModel_UnitPrice").change(function () {
+            var uop = $(this).val();
+            var totalAmnt = 0.0;
+            var qty = $("#DetailModel_Qty").val();
+            if (qty != '') {
+                totalAmnt = parseFloat(parseInt(qty) * parseFloat(uop));
+            }
+            $("#DetailModel_Total").val(totalAmnt);
+        });
+    </script>
+}

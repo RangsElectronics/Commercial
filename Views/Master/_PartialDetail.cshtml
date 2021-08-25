@@ -1,0 +1,41 @@
+﻿@model Commercial.Models.DetailViewModel
+@using HtmlHelpers.BeginCollectionItem;
+<tr class="dynamicRow">
+    @using (Html.BeginCollectionItem("DetailList"))
+    {
+        if (@Model != null)
+        {
+            @Html.HiddenFor(model => model.Id)
+        }
+        <td style="text-align: left;">
+            @Html.HiddenFor(model => model.ProductId)
+            @Html.Encode(Model.ProductName)
+        </td>
+        <td style="text-align: left;">
+            @Html.HiddenFor(model => model.HSCode)
+            @Html.Encode(Model.HSCode)
+        </td>
+        <td style="text-align: right;" id="Qty">
+            @Html.HiddenFor(model => model.Qty)
+            @Html.Encode(Model.Qty)
+        </td>
+        <td style="text-align: right;" id="Kg">
+            @Html.HiddenFor(model => model.KG)
+            @Html.Encode(Model.KG)
+        </td>
+        <td style="text-align: right;" id="UnitPrice">
+            @Html.HiddenFor(model => model.UnitPrice)
+            @Html.Encode(Model.UnitPrice)
+        </td>
+        <td style="text-align: right;" id="Total">
+            @Html.HiddenFor(model => model.Total)
+            @Html.Encode(Model.Total)
+        </td>
+        <td style="text-align: center;">
+            <a href="javascript:void();" class="" title="delete" onclick="RemoveProduct(this,@Model.Id)">
+                <i class="fas fa-trash" style="width:20px;height:20px;color:red"></i>
+            </a>
+        </td>
+    }
+</tr>
+

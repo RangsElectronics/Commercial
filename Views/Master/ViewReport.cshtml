@@ -1,0 +1,24 @@
+﻿@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "View Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    iframe {
+        width: 100%;
+    }
+</style>
+<div style="margin-top:20px">
+    <a class="btn btn-info btn-sm" href="@Url.Action("Index","Master")"><i class="fas fa-angle-left"></i>&nbsp; Back to List</a>
+</div>
+<div class="container">
+    <h4>View Master Info</h4>
+    <div class="row" style="margin-top:20px">
+        @if (ViewBag.ReportViewer != null)
+        {
+            @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+        }
+
+    </div>
+</div>

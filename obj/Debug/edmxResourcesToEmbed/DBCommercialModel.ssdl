@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbCommercialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblBank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MasterId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="HSCode" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="KG" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tblMainMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MainMenu" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankId" Type="int" Nullable="false" />
+    <Property Name="SupplierId" Type="int" Nullable="false" />
+    <Property Name="LCNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LCDate" Type="date" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="IRCNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PINo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PIValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="LCAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TTAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FOBPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FreightCharge" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ContainerQuantity" Type="varchar" MaxLength="50" />
+    <Property Name="CustomsDuty" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblSubMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubMenu" Type="varchar" MaxLength="50" />
+    <Property Name="Controller" Type="varchar" MaxLength="100" />
+    <Property Name="Action" Type="varchar" MaxLength="100" />
+    <Property Name="MainMenuId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblSupplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="ContactNo" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RolesId" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Passward" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbCommercial.dbo.vw_MasterDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_MasterDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="BankId" />
+      <PropertyRef Name="SupplierId" />
+      <PropertyRef Name="LCNo" />
+      <PropertyRef Name="LCDate" />
+      <PropertyRef Name="DetailId" />
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="BankName" />
+      <PropertyRef Name="SupplierName" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="BankId" Type="int" Nullable="false" />
+    <Property Name="SupplierId" Type="int" Nullable="false" />
+    <Property Name="LCNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LCDate" Type="date" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="IRCNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PINo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PIValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="LCAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TTAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FOBPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="FreightCharge" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ContainerQuantity" Type="varchar" MaxLength="50" />
+    <Property Name="CustomsDuty" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="DetailId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="HSCode" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="KG" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbDetails_tbMaster">
+    <End Role="tblMaster" Type="Self.tblMaster" Multiplicity="1" />
+    <End Role="tblDetails" Type="Self.tblDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDetails">
+        <PropertyRef Name="MasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDetails_tbProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="1" />
+    <End Role="tblDetails" Type="Self.tblDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDetails">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubMenu_tblRoles">
+    <End Role="tblMainMenu" Type="Self.tblMainMenu" Multiplicity="0..1" />
+    <End Role="tblSubMenu" Type="Self.tblSubMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMainMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblSubMenu">
+        <PropertyRef Name="MainMenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbMaster_tbBank">
+    <End Role="tblBank" Type="Self.tblBank" Multiplicity="1" />
+    <End Role="tblMaster" Type="Self.tblMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBank">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblMaster">
+        <PropertyRef Name="BankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbMaster_tbSupplier">
+    <End Role="tblSupplier" Type="Self.tblSupplier" Multiplicity="1" />
+    <End Role="tblMaster" Type="Self.tblMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSupplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblMaster">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbCommercialModelStoreContainer">
+    <EntitySet Name="tblBank" EntityType="Self.tblBank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDetails" EntityType="Self.tblDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMainMenu" EntityType="Self.tblMainMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMaster" EntityType="Self.tblMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubMenu" EntityType="Self.tblSubMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_MasterDetail" EntityType="Self.vw_MasterDetail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_MasterDetail].[Id] AS [Id], 
+    [vw_MasterDetail].[BankId] AS [BankId], 
+    [vw_MasterDetail].[SupplierId] AS [SupplierId], 
+    [vw_MasterDetail].[LCNo] AS [LCNo], 
+    [vw_MasterDetail].[LCDate] AS [LCDate], 
+    [vw_MasterDetail].[Address] AS [Address], 
+    [vw_MasterDetail].[IRCNo] AS [IRCNo], 
+    [vw_MasterDetail].[PINo] AS [PINo], 
+    [vw_MasterDetail].[PIValue] AS [PIValue], 
+    [vw_MasterDetail].[LCAmount] AS [LCAmount], 
+    [vw_MasterDetail].[TTAmount] AS [TTAmount], 
+    [vw_MasterDetail].[FOBPrice] AS [FOBPrice], 
+    [vw_MasterDetail].[TotalAmount] AS [TotalAmount], 
+    [vw_MasterDetail].[FreightCharge] AS [FreightCharge], 
+    [vw_MasterDetail].[ContainerQuantity] AS [ContainerQuantity], 
+    [vw_MasterDetail].[CustomsDuty] AS [CustomsDuty], 
+    [vw_MasterDetail].[DetailId] AS [DetailId], 
+    [vw_MasterDetail].[ProductId] AS [ProductId], 
+    [vw_MasterDetail].[HSCode] AS [HSCode], 
+    [vw_MasterDetail].[Qty] AS [Qty], 
+    [vw_MasterDetail].[KG] AS [KG], 
+    [vw_MasterDetail].[UnitPrice] AS [UnitPrice], 
+    [vw_MasterDetail].[Total] AS [Total], 
+    [vw_MasterDetail].[BankName] AS [BankName], 
+    [vw_MasterDetail].[Name] AS [Name], 
+    [vw_MasterDetail].[SupplierName] AS [SupplierName]
+    FROM [dbo].[vw_MasterDetail] AS [vw_MasterDetail]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbDetails_tbMaster" Association="Self.FK_tbDetails_tbMaster">
+      <End Role="tblMaster" EntitySet="tblMaster" />
+      <End Role="tblDetails" EntitySet="tblDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDetails_tbProduct" Association="Self.FK_tbDetails_tbProduct">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblDetails" EntitySet="tblDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubMenu_tblRoles" Association="Self.FK_tblSubMenu_tblRoles">
+      <End Role="tblMainMenu" EntitySet="tblMainMenu" />
+      <End Role="tblSubMenu" EntitySet="tblSubMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbMaster_tbBank" Association="Self.FK_tbMaster_tbBank">
+      <End Role="tblBank" EntitySet="tblBank" />
+      <End Role="tblMaster" EntitySet="tblMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbMaster_tbSupplier" Association="Self.FK_tbMaster_tbSupplier">
+      <End Role="tblSupplier" EntitySet="tblSupplier" />
+      <End Role="tblMaster" EntitySet="tblMaster" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
