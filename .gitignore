@@ -1,0 +1,16 @@
+
+.vs/Commercial/config/applicationhost.config
+.vs/Commercial/v16/.suo
+bin/Antlr3.Runtime.dll
+*.pdb
+*.dll
+*.xml
+bin
+/Properties/PublishProfiles
+obj
+obj/Debug/Commercial.csproj.CoreCompileInputs.cache
+obj/Debug/Commercial.csproj.FileListAbsolute.txt
+obj/Debug/Commercial.dll
+obj/Debug/Commercial.pdb
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/Tsc.out
